@@ -10,29 +10,7 @@
         body {
             font-family: 'Kanit', sans-serif;
             background-color: #ffffff;
-            margin: 0;
-            padding: 40px 20px;
             color: #334155;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* ส่วนแสดงผลตัวหนังสือ - ใหญ่ ชัดเจน ไม่มีกรอบ */
-        .text-preview {
-            text-align: center;
-            padding: 60px 0;
-            margin-bottom: 40px;
-        }
-
-        .styled-text {
-            font-size: 4rem;
-            font-weight: 700;
-            letter-spacing: -1.5px;
-            display: inline-block;
-            line-height: 1.2;
         }
 
         /* 25 เฉดสีรายตัวอักษร */
@@ -47,173 +25,250 @@
         .c22 { color: #FBC02D; } .c23 { color: #F9A825; } .c24 { color: #F57F17; }
         .c25 { color: #EF6C00; }
 
-        @media (max-width: 768px) {
-            .styled-text { font-size: 1.5rem; letter-spacing: -0.5px; }
-            .text-preview { padding: 30px 0; }
+        .swatch { 
+            width: 28px; 
+            height: 28px; 
+            border-radius: 8px; 
+            display: inline-block; 
+            vertical-align: middle; 
+            border: 1px solid rgba(0,0,0,0.1); 
         }
 
-        /* ตารางแบบไม่มีเส้นขอบหนัก */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { text-align: left; padding: 15px 10px; color: #94a3b8; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #f1f5f9; }
-        td { padding: 12px 10px; border-bottom: 1px solid #f8fafc; font-size: 0.85rem; }
-        
-        .swatch { width: 22px; height: 22px; border-radius: 6px; display: inline-block; vertical-align: middle; border: 1px solid rgba(0,0,0,0.05); }
-        
-        .fix-text { font-size: 0.8rem; color: #64748b; line-height: 1.4; }
-        .highlight-purple { color: #7e22ce; font-weight: 600; }
-        .highlight-pink { color: #be185d; font-weight: 600; }
-        .highlight-yellow { color: #a16207; font-weight: 600; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
 
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .mixing-unit {
             font-family: monospace;
             background: #f1f5f9;
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
-        .shopping-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
+        /* ควบคุมความกว้างคอลัมน์ให้ตรงกัน */
+        .col-char { width: 60px; text-align: center; }
+        .col-color { width: 80px; text-align: center; }
+        .col-formula { width: 220px; }
+        .col-fix { width: auto; }
+
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        th {
+            background-color: #f8fafc;
+            border-bottom: 2px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
             border-bottom: 1px solid #f1f5f9;
         }
     </style>
 </head>
-<body>
+<body class="p-6 md:p-12">
 
-    <div class="container">
-        <!-- แสดงผลตัวหนังสือหลัก -->
-        <div class="text-preview">
-            <div class="styled-text">
+    <div class="max-w-5xl mx-auto">
+        <!-- Header Section -->
+        <header class="text-center mb-16">
+            <div class="text-4xl md:text-7xl font-bold tracking-tighter mb-6 leading-tight">
                 <span class="c1">@</span><span class="c2">ว</span><span class="c3">ิ</span><span class="c4">ท</span><span class="c5">ย</span><span class="c6">า</span><span class="c7">ล</span><span class="c8">ั</span><span class="c9">ย</span><span class="c10">เ</span><span class="c11">ท</span><span class="c12">ค</span><span class="c13">น</span><span class="c14">ิ</span><span class="c15">ค</span><span class="c16">อ</span><span class="c17">ำ</span><span class="c18">น</span><span class="c19">า</span><span class="c20">จ</span><span class="c21">เ</span><span class="c22">จ</span><span class="c23">ร</span><span class="c24">ิ</span><span class="c25">ญ</span>
             </div>
-            <p class="text-slate-400 text-xs mt-4 tracking-widest uppercase">วิทยาลัยเทคนิคอำนาจเจริญ | คู่มือผสมสีรายตัว</p>
-        </div>
+            <div class="h-1 w-24 bg-gradient-to-r from-purple-600 to-yellow-500 mx-auto mb-4 rounded-full"></div>
+            <p class="text-slate-400 text-sm uppercase tracking-widest font-light">คู่มือผสมสีรายตัวอักษร วิทยาลัยเทคนิคอำนาจเจริญ</p>
+        </header>
 
-        <!-- ใหม่: ส่วนรายการของที่ต้องซื้อ -->
-        <div class="mb-16">
-            <h3 class="section-title text-blue-600">
-                <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
-                สิ่งที่ต้องเตรียมซื้อ (Shopping Checklist)
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="font-bold text-sm text-slate-500 uppercase mb-4">🎨 แม่สีทาจริง (แนะนำสีอะคริลิก)</h4>
-                    <div class="shopping-item">
-                        <div class="w-4 h-4 rounded-full bg-red-600"></div>
-                        <span class="text-sm">สีแดง (Red) - 1 ขวด/กระป๋อง</span>
+        <!-- Navigation -->
+        <nav class="flex flex-wrap justify-center gap-3 mb-12">
+            <button onclick="showTab('setup')" class="nav-btn px-6 py-2.5 rounded-xl bg-slate-100 font-bold text-sm transition-all active:scale-95 shadow-sm">1. อุปกรณ์ & ซื้อของ</button>
+            <button onclick="showTab('purple')" class="nav-btn px-6 py-2.5 rounded-xl bg-purple-50 text-purple-700 font-bold text-sm transition-all active:scale-95 shadow-sm border border-purple-100">2. โทนม่วง (@-ั)</button>
+            <button onclick="showTab('transition')" class="nav-btn px-6 py-2.5 rounded-xl bg-pink-50 text-pink-700 font-bold text-sm transition-all active:scale-95 shadow-sm border border-pink-100">3. โทนเชื่อม (ย-ค)</button>
+            <button onclick="showTab('yellow')" class="nav-btn px-6 py-2.5 rounded-xl bg-yellow-50 text-yellow-700 font-bold text-sm transition-all active:scale-95 shadow-sm border border-yellow-100">4. โทนเหลือง (อ-ญ)</button>
+        </nav>
+
+        <!-- Tab Content: Setup -->
+        <div id="setup" class="tab-content active space-y-12">
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                    <h3 class="text-xl font-bold mb-6 text-blue-600 flex items-center gap-3">
+                        <span class="w-2 h-6 bg-blue-500 rounded-full"></span>
+                        สิ่งที่ต้องซื้อ (Shopping)
+                    </h3>
+                    <ul class="space-y-4 text-sm text-slate-600">
+                        <li class="flex items-center gap-4 p-3 bg-slate-50 rounded-xl">
+                            <span class="w-4 h-4 rounded-full bg-red-600 shadow-sm"></span> 
+                            <span>สีแดง (Red) - 1 กระป๋อง</span>
+                        </li>
+                        <li class="flex items-center gap-4 p-3 bg-slate-50 rounded-xl">
+                            <span class="w-4 h-4 rounded-full bg-yellow-400 shadow-sm"></span> 
+                            <span>สีเหลือง (Yellow) - 1 กระป๋อง</span>
+                        </li>
+                        <li class="flex items-center gap-4 p-3 bg-slate-50 rounded-xl">
+                            <span class="w-4 h-4 rounded-full bg-blue-700 shadow-sm"></span> 
+                            <span>สีน้ำเงิน (Blue) - 1 กระป๋อง</span>
+                        </li>
+                        <li class="flex items-center gap-4 p-3 bg-blue-50 rounded-xl">
+                            <span class="w-4 h-4 rounded-full bg-white border border-blue-200 shadow-sm"></span> 
+                            <span>สีขาว (White) - <strong>ขวดใหญ่</strong> (ใช้เยอะที่สุด)</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                    <h3 class="text-xl font-bold mb-6 text-slate-700 flex items-center gap-3">
+                        <span class="w-2 h-6 bg-slate-400 rounded-full"></span>
+                        อุปกรณ์เสริม
+                    </h3>
+                    <ul class="space-y-4 text-sm text-slate-600">
+                        <li class="flex items-center gap-3">💉 <strong>สลิง (Syringe):</strong> ขนาด 5ml หรือ 10ml (2 อัน)</li>
+                        <li class="flex items-center gap-3">🥤 <strong>ถ้วยแบ่ง:</strong> ถ้วยพลาสติก 25 ใบ (ผสมแยกรายตัว)</li>
+                        <li class="flex items-center gap-3">🖌️ <strong>พู่กัน:</strong> เบอร์ใหญ่ (ทาพื้น) และเบอร์เล็ก (เก็บขอบ)</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="bg-red-50 p-8 rounded-3xl border border-red-100">
+                <h3 class="text-xl font-bold mb-4 text-red-700">คู่มือแก้ปัญหาหน้างาน</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                    <div>
+                        <p class="font-bold text-red-600 mb-1">เข้มไป (มืดไป)</p>
+                        <p class="text-slate-600">ค่อยๆ เติมสีขาวทีละหยดเพื่อดึงโทนสีให้สว่างขึ้น</p>
                     </div>
-                    <div class="shopping-item">
-                        <div class="w-4 h-4 rounded-full bg-yellow-400"></div>
-                        <span class="text-sm">สีเหลือง (Yellow) - 1 ขวด/กระป๋อง</span>
+                    <div>
+                        <p class="font-bold text-blue-600 mb-1">จืดไป (ซีดไป)</p>
+                        <p class="text-slate-600">เติมแม่สีหลักของเฉดนั้นเพิ่ม ห้ามเติมขาวเพิ่ม</p>
                     </div>
-                    <div class="shopping-item">
-                        <div class="w-4 h-4 rounded-full bg-blue-700"></div>
-                        <span class="text-sm">สีน้ำเงิน (Blue) - 1 ขวด/กระป๋อง</span>
-                    </div>
-                    <div class="shopping-item">
-                        <div class="w-4 h-4 rounded-full bg-white border"></div>
-                        <span class="text-sm">สีขาว (White) - <strong>เน้นขวดใหญ่</strong> (ใช้ผสมเยอะที่สุด)</span>
+                    <div>
+                        <p class="font-bold text-amber-600 mb-1">ทาไม่ติด (สีบาง)</p>
+                        <p class="text-slate-600">เติมสีขาวปลายพู่กันเล็กน้อยเพื่อให้เนื้อสีทึบแสง</p>
                     </div>
                 </div>
-                <div>
-                    <h4 class="font-bold text-sm text-slate-500 uppercase mb-4">🛠️ อุปกรณ์ตวงและระบาย</h4>
-                    <div class="shopping-item">
-                        <span class="text-lg">💉</span>
-                        <span class="text-sm">สลิงฉีดยา (5ml หรือ 10ml) - อย่างน้อย 2 อัน (แยกสีเข้ม/สว่าง)</span>
-                    </div>
-                    <div class="shopping-item">
-                        <span class="text-lg">🎨</span>
-                        <span class="text-sm">จานสีหลุม หรือ ถ้วยแบ่งพลาสติกเล็กๆ (25 ใบ ถ้าจะผสมรอไว้เลย)</span>
-                    </div>
-                    <div class="shopping-item">
-                        <span class="text-lg">🖌️</span>
-                        <span class="text-sm">พู่กันเบอร์ใหญ่ (ทาเนื้อสี) และ เบอร์เล็ก (เก็บรายละเอียด)</span>
-                    </div>
-                </div>
-            </div>
-            <p class="text-[11px] text-slate-400 mt-4 italic">* สามารถหาซื้อได้ตามร้านเครื่องเขียนทั่วไป หรือแผนกเครื่องเขียนในห้างสรรพสินค้า</p>
+            </section>
         </div>
 
-        <div class="mb-12">
-            <h3 class="section-title">
-                <span class="w-2 h-6 bg-purple-600 rounded-full"></span>
-                สูตรผสมสีรายตัวอักษร (ฉบับละเอียด)
-            </h3>
+        <!-- Tab: Color Tables (Purple, Transition, Yellow) -->
+        <!-- เราสร้างฟังก์ชันสร้างตารางเพื่อคุมโครงสร้างให้ตรงกัน -->
+        <div id="purple" class="tab-content">
             <div class="overflow-x-auto">
-                <table>
+                <table class="text-sm">
                     <thead>
                         <tr>
-                            <th class="w-12">ตัว</th>
-                            <th class="w-16">สีตัวอย่าง</th>
-                            <th class="w-24">Hex</th>
-                            <th>สูตรผสมแม่สี (ส่วน)</th>
-                            <th>วิธีแก้หากสีเพี้ยนหน้างาน</th>
+                            <th class="py-4 px-3 col-char">ตัว</th>
+                            <th class="py-4 px-3 col-color">สี</th>
+                            <th class="py-4 px-3 col-formula">สูตรผสม (ส่วน)</th>
+                            <th class="py-4 px-3 col-fix text-left">วิธีแก้หากสีเพี้ยน</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- กลุ่มม่วง -->
-                        <tr><td>@</td><td><div class="swatch bg-[#4A148C]"></div></td><td>#4A148C</td><td><span class="mixing-unit">นง 7 : ด 3</span></td><td class="fix-text"><span class="highlight-purple">เข้มไป</span> +ขาว / <span class="highlight-purple">แดงไป</span> +นง</td></tr>
-                        <tr><td>ว</td><td><div class="swatch bg-[#551996]"></div></td><td>#551996</td><td><span class="mixing-unit">นง 6 : ด 4</span></td><td class="fix-text"><span class="highlight-purple">มืดไป</span> +ขาวทีละนิด</td></tr>
-                        <tr><td>ิ</td><td><div class="swatch bg-[#601EA0]"></div></td><td>#601EA0</td><td><span class="mixing-unit">นง 5 : ด 5</span></td><td class="fix-text">ผสม นง-ด ให้สมดุลกัน</td></tr>
-                        <tr><td>ท</td><td><div class="swatch bg-[#6A23AA]"></div></td><td>#6A23AA</td><td><span class="mixing-unit">(นง 5:ด 5) +ขาวจิ๋ว</span></td><td class="fix-text"><span class="highlight-purple">ไม่ม่วง</span> +ขาวเพื่อดึงสีออกมา</td></tr>
-                        <tr><td>ย</td><td><div class="swatch bg-[#7528B4]"></div></td><td>#7528B4</td><td><span class="mixing-unit">ม่วงผสม +ขาว 1</span></td><td class="fix-text">ค่อยๆ หยดขาวเพิ่มจนได้โทนที่ใช่</td></tr>
-                        <tr><td>า</td><td><div class="swatch bg-[#802DBE]"></div></td><td>#802DBE</td><td><span class="mixing-unit">ม่วงผสม +ขาว 2</span></td><td class="fix-text">เพิ่มสีขาวจากตัวอักษรก่อนหน้า</td></tr>
-                        <tr><td>ล</td><td><div class="swatch bg-[#8B32C8]"></div></td><td>#8B32C8</td><td><span class="mixing-unit">ม่วงผสม +ขาว 3</span></td><td class="fix-text"><span class="highlight-purple">จืดไป</span> +นง และ +แดง ทีละหยด</td></tr>
-                        <tr><td>ั</td><td><div class="swatch bg-[#9637D2]"></div></td><td>#9637D2</td><td><span class="mixing-unit">ม่วงผสม +ขาวมาก</span></td><td class="fix-text">เน้นความสว่างสูงสุดของกลุ่มม่วง</td></tr>
-                        
-                        <!-- กลุ่มเชื่อม ชมพู-ส้ม -->
-                        <tr><td>ย</td><td><div class="swatch bg-[#D81B60]"></div></td><td>#D81B60</td><td><span class="mixing-unit">ด 8 : นง 1 : ขาว 1</span></td><td class="fix-text"><span class="highlight-pink">ม่วงไป</span> +แดง / <span class="highlight-pink">แดงไป</span> +นง</td></tr>
-                        <tr><td>เ</td><td><div class="swatch bg-[#E91E63]"></div></td><td>#E91E63</td><td><span class="mixing-unit">แดง 9 : ขาว 1</span></td><td class="fix-text">ห้ามใส่น้ำเงิน ถ้าเข้มไป +ขาว</td></tr>
-                        <tr><td>ท</td><td><div class="swatch bg-[#F06292]"></div></td><td>#F06292</td><td><span class="mixing-unit">แดง 8 : ขาว 2</span></td><td class="fix-text"><span class="highlight-pink">จืดไป</span> +แดงสดทีละหยด</td></tr>
-                        <tr><td>ค</td><td><div class="swatch bg-[#EC407A]"></div></td><td>#EC407A</td><td><span class="mixing-unit">ชมพูสด +นงจิ๋วเดียว</span></td><td class="fix-text">ระวังน้ำเงินเยอะจะทำให้สีตุ่น</td></tr>
-                        <tr><td>น</td><td><div class="swatch bg-[#FF5252]"></div></td><td>#FF5252</td><td><span class="mixing-unit">ด 8 : ล 2</span></td><td class="fix-text"><span class="highlight-yellow">ส้มไป</span> +แดง / <span class="highlight-yellow">จางไป</span> +แดง</td></tr>
-                        <tr><td>ิ</td><td><div class="swatch bg-[#FF7043]"></div></td><td>#FF7043</td><td><span class="mixing-unit">ด 6 : ล 4</span></td><td class="fix-text"><span class="highlight-yellow">แดงไป</span> +เหลืองเพิ่ม</td></tr>
-                        <tr><td>ค</td><td><div class="swatch bg-[#F4511E]"></div></td><td>#F4511E</td><td><span class="mixing-unit">ด 5 : ล 5</span></td><td class="fix-text">ผสมให้ได้ส้มอิฐสว่าง</td></tr>
-                        
-                        <!-- กลุ่มเหลือง -->
-                        <tr><td>อ</td><td><div class="swatch bg-[#FB8C00]"></div></td><td>#FB8C00</td><td><span class="mixing-unit">ล 4 : ด 6</span></td><td class="fix-text"><span class="highlight-yellow">มืดไป</span> +เหลืองเพิ่ม</td></tr>
-                        <tr><td>ำ</td><td><div class="swatch bg-[#FFA000]"></div></td><td>#FFA000</td><td><span class="mixing-unit">ล 7 : ด 3</span></td><td class="fix-text"><span class="highlight-yellow">ส้มไป</span> +เหลือง / <span class="highlight-yellow">จืดไป</span> +แดง</td></tr>
-                        <tr><td>น</td><td><div class="swatch bg-[#FFB300]"></div></td><td>#FFB300</td><td><span class="mixing-unit">ล 8 : ด 2</span></td><td class="fix-text">ถ้าดูซีดให้เติมแดงจิ๋วเดียว (ปลายเข็ม)</td></tr>
-                        <tr><td>า</td><td><div class="swatch bg-[#FFC107]"></div></td><td>#FFC107</td><td><span class="mixing-unit">ล 9 : ด 1</span></td><td class="fix-text">เน้นเหลืองทองสว่าง</td></tr>
-                        <tr><td>จ</td><td><div class="swatch bg-[#FFCA28]"></div></td><td>#FFCA28</td><td><span class="mixing-unit">ล 9 : ส้มจิ๋ว</span></td><td class="fix-text"><span class="highlight-yellow">ใสไป</span> +ขาวปลายพู่กัน</td></tr>
-                        <tr><td>เ</td><td><div class="swatch bg-[#FFD54F]"></div></td><td>#FFD54F</td><td><span class="mixing-unit">เหลืองล้วนสว่าง</span></td><td class="fix-text">ใช้แม่สีเหลืองโดยตรง</td></tr>
-                        <tr><td>จ</td><td><div class="swatch bg-[#FBC02D]"></div></td><td>#FBC02D</td><td><span class="mixing-unit">เหลืองล้วนเน้นเข้ม</span></td><td class="fix-text">เน้นความสดของเนื้อสีเหลือง</td></tr>
-                        <tr><td>ร</td><td><div class="swatch bg-[#F9A825]"></div></td><td>#F9A825</td><td><span class="mixing-unit">ล 9 : ด 1</span></td><td class="fix-text"><span class="highlight-yellow">ส้มไป</span> +เหลืองเพิ่ม</td></tr>
-                        <tr><td>ิ</td><td><div class="swatch bg-[#F57F17]"></div></td><td>#F57F17</td><td><span class="mixing-unit">ล 8 : ด 2</span></td><td class="fix-text">ปรับให้เข้ากับตัว "ร" ก่อนหน้า</td></tr>
-                        <tr><td>ญ</td><td><div class="swatch bg-[#EF6C00]"></div></td><td>#EF6C00</td><td><span class="mixing-unit">ล 3 : ด 7</span></td><td class="fix-text">จบด้วยส้มเข้มที่ชัดเจน</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">@</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#4A148C]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">นง 7 : ด 3</span></td><td class="py-4 px-3 text-slate-500">มืดไป +ขาว / แดงไป +นง</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ว</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#551996]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">นง 6 : ด 4</span></td><td class="py-4 px-3 text-slate-500">มืดไป +ขาวทีละนิด</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ิ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#601EA0]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">นง 5 : ด 5</span></td><td class="py-4 px-3 text-slate-500">สีม่วงมาตรฐาน ผสมให้เท่ากัน</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ท</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#6A23AA]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">(นง 5:ด 5) +ขาวจิ๋ว</span></td><td class="py-4 px-3 text-slate-500">+ขาว เพื่อเปิดเนื้อสีให้สว่าง</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ย</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#7528B4]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ม่วงผสม +ขาว 1</span></td><td class="py-4 px-3 text-slate-500">ค่อยๆ เติมขาวจนนุ่มนวล</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">า</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#802DBE]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ม่วงผสม +ขาว 2</span></td><td class="py-4 px-3 text-slate-500">สว่างกว่าตัวก่อนหน้า 1 ระดับ</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ล</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#8B32C8]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ม่วงผสม +ขาว 3</span></td><td class="py-4 px-3 text-slate-500">จืดไป +นง และ +แดง ทีละหยด</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ั</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#9637D2]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ม่วงผสม +ขาวมาก</span></td><td class="py-4 px-3 text-slate-500">เน้นสว่างใสที่สุดก่อนเปลี่ยนโทน</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 py-10 border-t border-slate-100">
-            <div>
-                <h4 class="font-bold mb-4 uppercase text-sm tracking-widest text-slate-500">วิธีการตวงสี</h4>
-                <ul class="text-sm space-y-3 text-slate-600">
-                    <li class="flex items-start gap-2"><strong>💉 สลิง:</strong> 1ml = 1 ส่วน (แม่นยำที่สุด)</li>
-                    <li class="flex items-start gap-2"><strong>🥤 ฝาขวด:</strong> 1 ฝา = 1 ส่วน (สำหรับงานใหญ่)</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4 uppercase text-sm tracking-widest text-slate-500">ข้อแนะนำสำคัญ</h4>
-                <p class="text-sm text-slate-600 leading-relaxed italic">
-                    "การผสมสีรายตัวอักษรแบบนี้จะให้งานที่ดูแพงและมีมิติมาก แนะนำให้ผสมทีละสีในปริมาณน้อยๆ แล้วระบายไปทีละตัว เพื่อป้องกันสีแห้งและสีเพี้ยนระหว่างทางครับ"
-                </p>
+        <div id="transition" class="tab-content">
+            <div class="overflow-x-auto">
+                <table class="text-sm">
+                    <thead>
+                        <tr>
+                            <th class="py-4 px-3 col-char">ตัว</th>
+                            <th class="py-4 px-3 col-color">สี</th>
+                            <th class="py-4 px-3 col-formula">สูตรผสม (ส่วน)</th>
+                            <th class="py-4 px-3 col-fix text-left">วิธีแก้เพี้ยน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="py-4 px-3 font-bold col-char">ย</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#D81B60]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ด 8 : นง 1 : ขาว 1</span></td><td class="py-4 px-3 text-slate-500">ม่วงไป +แดง / แดงไป +นง</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">เ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#E91E63]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ด 9 : ขาว 1</span></td><td class="py-4 px-3 text-slate-500">ห้ามใส่น้ำเงิน ถ้ามืด +ขาว</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ท</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#F06292]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ด 8 : ขาว 2</span></td><td class="py-4 px-3 text-slate-500">ซีดไป +แดงสดทีละหยด</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ค</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#EC407A]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ชมพูสด +นงจิ๋วเดียว</span></td><td class="py-4 px-3 text-slate-500">นงเยอะสีจะตุ่น ต้องระวัง</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">น</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#FF5252]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ด 8 : ล 2</span></td><td class="py-4 px-3 text-slate-500">ส้มไป +แดง / จางไป +แดง</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ิ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#FF7043]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ด 6 : ล 4</span></td><td class="py-4 px-3 text-slate-500">แดงไป +เหลืองเพิ่มทีละนิด</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ค</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#F4511E]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ด 5 : ล 5</span></td><td class="py-4 px-3 text-slate-500">ผสมให้ได้ส้มอิฐสว่างสดใส</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+
+        <div id="yellow" class="tab-content">
+            <div class="overflow-x-auto">
+                <table class="text-sm">
+                    <thead>
+                        <tr>
+                            <th class="py-4 px-3 col-char">ตัว</th>
+                            <th class="py-4 px-3 col-color">สี</th>
+                            <th class="py-4 px-3 col-formula">สูตรผสม (ส่วน)</th>
+                            <th class="py-4 px-3 col-fix text-left">วิธีแก้เพี้ยน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="py-4 px-3 font-bold col-char">อ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#FB8C00]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ล 4 : ด 6</span></td><td class="py-4 px-3 text-slate-500">มืดไป +เหลืองเพิ่มให้สีสว่าง</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ำ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#FFA000]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ล 7 : ด 3</span></td><td class="py-4 px-3 text-slate-500">ส้มไป +เหลือง / จืดไป +แดง</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">น</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#FFB300]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ล 8 : ด 2</span></td><td class="py-4 px-3 text-slate-500">สีเหลืองทอง เติมแดงปลายเข็ม</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">า</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#FFC107]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ล 9 : ด 1</span></td><td class="py-4 px-3 text-slate-500">เน้นเหลืองทองสว่างชัดเจน</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">จ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#FFCA28]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ล 9 : ส้มจิ๋วเดียว</span></td><td class="py-4 px-3 text-slate-500">ใสไป +ขาวปลายพู่กัน</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">เ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#FFD54F]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">เหลืองล้วนสว่าง</span></td><td class="py-4 px-3 text-slate-500">สีแม่สีเหลืองโดยตรงไม่ต้องผสม</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">จ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#FBC02D]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">เหลืองล้วนเน้นเข้ม</span></td><td class="py-4 px-3 text-slate-500">เน้นความสดของเม็ดสีเหลือง</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ร</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#F9A825]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ล 9 : ด 1</span></td><td class="py-4 px-3 text-slate-500">ส้มไป +เหลืองเพิ่มให้ทองขึ้น</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ิ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#F57F17]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ล 8 : ด 2</span></td><td class="py-4 px-3 text-slate-500">ปรับให้สมดุลกับตัว "ร"</td></tr>
+                        <tr><td class="py-4 px-3 font-bold col-char">ญ</td><td class="py-4 px-3 col-color text-center"><div class="swatch bg-[#EF6C00]"></div></td><td class="py-4 px-3 col-formula"><span class="mixing-unit">ล 3 : ด 7</span></td><td class="py-4 px-3 text-slate-500">จบงานด้วยสีส้มทองเข้มจัด</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="mt-24 pt-8 border-t border-slate-100 text-center text-slate-400 text-xs tracking-widest font-light">
+            วิทยาลัยเทคนิคอำนาจเจริญ | แผนกงานออกแบบสีและงานศิลป์ © 2026
+        </footer>
     </div>
 
+    <script>
+        function showTab(tabId) {
+            // ซ่อนทุกหน้า
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // ลบสถานะ Active จากทุกปุ่ม
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-blue-500', 'bg-white', 'shadow-md', 'scale-105');
+                btn.classList.add('bg-slate-50', 'text-slate-500');
+            });
+
+            // แสดงหน้าปัจจุบัน
+            const activeTab = document.getElementById(tabId);
+            activeTab.classList.add('active');
+            
+            // ปรับสไตล์ปุ่มที่เลือก
+            const activeBtn = event.currentTarget;
+            activeBtn.classList.add('ring-2', 'ring-blue-500', 'bg-white', 'shadow-md', 'scale-105');
+            activeBtn.classList.remove('bg-slate-50', 'text-slate-500');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // เริ่มต้นด้วยหน้า setup
+        window.onload = function() {
+            const initialBtn = document.querySelector('button[onclick="showTab(\'setup\')"]');
+            initialBtn.classList.add('ring-2', 'ring-blue-500', 'bg-white', 'shadow-md', 'scale-105');
+            initialBtn.classList.remove('bg-slate-50', 'text-slate-500');
+        }
+    </script>
 </body>
 </html>
